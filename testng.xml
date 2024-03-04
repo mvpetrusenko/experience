@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="All Test Suite">
+
+
+    <listeners>
+        <listener class-name="com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter"/>
+    </listeners>
+
+    <test name="All Tests" parallel="tests" thread-count="5">
+
+
+        <classes>
+            <class name="tests.api.RestAssuredAPITest"/>
+            <class name="tests.ui.tests.SearchSongTest"/>
+            <class name="tests.ui.tests.SearchSongNegativeTest"/>
+            <class name="tests.ui.tests.BrowseGenresTest"/>
+            <class name="tests.ui.tests.BrowseGenresNegativeTest"/>
+            <class name="tests.ui.tests.CreatePlaylistTest"/>
+            <class name="tests.ui.tests.PlaySongTest"/>
+            <class name="tests.ui.tests.ShowAllPlaylistsTest"/>
+            <class name="tests.ui.tests.InvalidLoginTest"/>
+
+
+        </classes>
+
+
+    </test>
+
+
+</suite>
