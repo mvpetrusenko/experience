@@ -21,20 +21,19 @@ public class Specifications {
 
 
     public static ResponseSpecification responseSpecOK200() {
-
         return new ResponseSpecBuilder()
                 .expectStatusCode(200)
                 .build();
-
-//    public static ResponseSpecification responseSpecError400() {
-//
-//        return new ResponseSpecBuilder()
-//                .expectStatusCode(400)
-//                .build();
-//
-//        }
-
     }
+
+    public static ResponseSpecification responseSpecError401() {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(401)
+                .build();
+
+        }
+
+
 
 
     public static void installSpecification(RequestSpecification request, ResponseSpecification response) {

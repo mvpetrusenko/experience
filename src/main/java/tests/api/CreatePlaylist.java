@@ -2,21 +2,19 @@ package tests.api;
 
 public class CreatePlaylist {
 
-    // from response:
+    String id2 = "4";
+    String description = "my new playlist";
 
-    private String description;
-    private String id;
-
-    public CreatePlaylist(String description, String id) {
+    public CreatePlaylist(String id, String description) {
+        this.id2 = id;
         this.description = description;
-        this.id = id;
+    }
+
+    public String getId() {
+        return id2;
     }
 
     public String getDescription() {
         return description;
-    }
-
-    public String getId() {
-        return id;
     }
 }

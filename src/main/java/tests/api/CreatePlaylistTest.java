@@ -1,5 +1,6 @@
 package tests.api;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -8,7 +9,7 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 
 public class CreatePlaylistTest {
-    private final static String URL = "https://dogapi.dog/";
+    private final static String URL2 = "https://api.spotify.com/";
 
     // https://dogapi.dog/api/v2/breeds
 
@@ -17,22 +18,22 @@ public class CreatePlaylistTest {
     @Test
     public void checkIdInPlaylistTest() {
 
-        Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseSpecOK200());
+        Specifications.installSpecification(Specifications.requestSpec(URL2), Specifications.responseSpecError401());
         String id = "4";
         String description = "my new playlist";
 
-        List<ApiExample> dogs = given()
+        // extract in our class
+
+        PostExample playlist = new PostExample("new description request", "New new playlist", true);
+        CreatePlaylistTest createPlaylistTest = given()
+                .body(playlist)
                 .when()
-                .get("api/v2/breeds")
+                .post("users/smedjan/playlists")
                 .then().log().all()
-                .extract().body().jsonPath().getList("data", ApiExample.class);
+                .extract().as(CreatePlaylistTest.class);
+
+        Assert.assertEquals(id, createPlaylistTest.getClass());
 
 
-        //dogs.forEach(x -> Assert.assertTrue(x.getId().contains(x.getId().toString())));
-        //Assert.assertTrue(dogs.stream().allMatch(x->x.getId().contains("68f47c5a")));
-
-        dogs.forEach(x -> Assert.assertTrue(x.getName().contains(x.getName())));
-        Assert.assertTrue(dogs.stream().allMatch(x->x.getName().contains("Caucasian Shepherd Dog")));
-
-        //List<String> ids = dogs.stream().map(x->x.getN
+    }
 }
